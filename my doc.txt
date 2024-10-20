@@ -1,0 +1,131 @@
+﻿ECG sensor AD8233
+Lectect sensor AD5940
+
+tep maxium sensor mx6675
+
+
+C 
+structure ;-  memory req max data type
+uniuon ;- sum of all variable
+
+stack:- last input is 1st out put 	
+
+queue:- 1st input is 1st output
+
+tree:- 
+	root node is connect with multiple sub node and make tree
+
+char         4
+int            4
+double     8
+data stuck:- 
+	array – same data types
+	structure and unioun ;- same and diffrent data type
+
+
+Storage Class
+auto – memotry assisgned
+extern – one file to other file
+register
+	This storage class declares register variables that have the same functionality as that of the auto variables. The only difference is that the compiler tries to store these variables in the register of the microprocessor if a free registration is available.
+
+Static
+static is used with global variables and functions to set their scope to the containing file.
+
+
+malloc() allocates a memory block of given size (in bytes) and returns a pointer to the beginning of the block. malloc() doesn’t initialize the allocated memory. 
+
+calloc() allocates the memory and also initializes every byte in the allocated memory to
+
+const char* and char const* says that the pointer can point to a constant char and value of char pointed by this pointer cannot be changed.
+
+| or
+& and
+~ compliment or toggle
+^ XoR
+<< left shift
+>> right shit
+
+rand() rendom value print
+
+The memory leak occurs, when a piece of memory which was previously allocated by the programmer. Then it is not deallocated properly by programmer. That memory is no longer in use by the program
+
+
+Task  create 
+	taskname 
+	task function
+	priority
+	stack size 
+	task hendler 
+	if esp32 also can define core of proecssor
+
+
+
+
+
+
+
+uart_config_t uart_config = {
+
+
+.baud_rate = BAUD_RATE,
+
+.data_bits = UART_DATA_8_BITS,
+
+.parity = UART_PARITY_DISABLE,
+
+.stop_bits = UART_STOP_BITS_1,
+
+.flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+
+.rx_flow_ctrl_thresh = 122,
+
+.source_clk = UART_SCLK_APB,
+
+};
+
+
+spi_bus_config_t buscfg={
+
+
+.miso_io_num=PIN_NUM_MISO,
+
+.mosi_io_num=PIN_NUM_MOSI,
+
+.sclk_io_num=PIN_NUM_CLK,
+
+.quadwp_io_num=-1,
+
+.quadhd_io_num=-1,
+
+.max_transfer_sz=PARALLEL_LINES*320*2+8
+
+};
+
+
+i2c_config_t conf = {
+
+
+.mode = I2C_MODE_MASTER,
+
+.sda_io_num = I2C_MASTER_SDA_IO,
+
+.scl_io_num = I2C_MASTER_SCL_IO,
+
+.sda_pullup_en = GPIO_PULLUP_ENABLE,
+
+.scl_pullup_en = GPIO_PULLUP_ENABLE,
+
+.master.clk_speed = I2C_MASTER_FREQ_HZ,
+
+};
+
+
+
+
+call by value vs call by ref.
+recursion in c
+write a program to swap two number without using the third variable
+print factorial without using recusrion
+find repeted char in string
+find occurrence of a word in given string

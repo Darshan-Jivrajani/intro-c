@@ -1,0 +1,20 @@
+hi good morning,
+
+
+I have total 6 years of experience in this embedded domain,
+In this duration, I worked with many projects from scrtched or part of many projects,
+
+
+my overall exp in alomost all domain like smart gadgets, Industrial based, renewable,medical, wearable devices, mmwave ADAS 5G and telecom sector
+ and many more
+ 
+I worked with many micro-controllers and processors, Like Ti series MCU, sitara series mcu, ESP and nxp series 
+In processors side, Sitara series, Qualcomm processor, Raspberry pi and Beagle-bone black
+
+
+I worked also with internet and serial protocol, like BLE, zigbee, WiFi, socket, mqtt ,
+And serial protocol like, UART,SPI, I2C, etc.
+
+
+I got a chance for review book
+2 projets gov approved one qatar and aus
