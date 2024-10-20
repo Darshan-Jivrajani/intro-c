@@ -1,0 +1,55 @@
+A reentrant function in C is a function that can be safely called simultaneously by multiple threads or during the execution of itself (recursion) without causing any data corruption or unexpected behavior. This is crucial in multi-threaded environments or in signal handlers.
+
+Key characteristics of reentrant functions include:
+
+No Static or Global State: Reentrant functions do not use static or global variables that can be modified, as this can lead to conflicts when multiple invocations of the function occur.
+
+Only Local Variables: Any state information must be stored in local (automatic) variables, which are unique to each invocation of the function.
+
+No Side Effects: The function should not rely on or modify any shared resources, such as file descriptors or dynamically allocated memory that may be accessed by other threads.
+
+Thread-Safe: Reentrant functions are thread-safe, meaning they can be executed concurrently by multiple threads without causing issues.
+
+Example of a Reentrant Function
+Here’s a simple example of a reentrant function that calculates the factorial of a number:
+
+c
+Copy code
+#include <stdio.h>
+
+unsigned long factorial(int n) {
+    if (n < 0) return 0; // Factorial is not defined for negative numbers
+    if (n == 0) return 1; // Base case
+
+    return n * factorial(n - 1); // Recursive call
+}
+
+int main() {
+    printf("Factorial of 5: %lu\n", factorial(5));
+    return 0;
+}
+Example of a Non-Reentrant Function
+In contrast, consider the following non-reentrant function that uses a static variable:
+
+c
+Copy code
+#include <stdio.h>
+
+unsigned long non_reentrant_factorial(int n) {
+    static unsigned long result = 1; // Static variable
+
+    if (n < 0) return 0;
+    if (n == 0) return result;
+
+    result *= n;
+    return non_reentrant_factorial(n - 1);
+}
+
+int main() {
+    printf("Factorial of 5: %lu\n", non_reentrant_factorial(5));
+    return 0;
+}
+In this case, if non_reentrant_factorial is called again while a previous call is still active, it can corrupt the result variable, leading to incorrect calculations.
+
+Summary
+Reentrant functions are essential for safe and predictable behavior in concurrent programming, ensuring that functions can be executed simultaneously without interference.
