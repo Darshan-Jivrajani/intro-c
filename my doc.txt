@@ -5,8 +5,17 @@ tep maxium sensor mx6675
 
 
 C 
-structure ;-  memory req max data type
-uniuon ;- sum of all variable
+struct Person {
+    char name[50];  // 50 bytes
+    int age;        // 4 bytes
+    float height;   // 4 bytes
+}; total 58 bytes
+
+
+Struct Size: Each member has its own space, plus padding, leading to 60 bytes.
+Union Size: Only the largest member determines the size, leading to 52 bytes when considering alignment.
+
+
 
 stack:- last input is 1st out put 	
 
