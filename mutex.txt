@@ -1,0 +1,95 @@
+Definition: A mutex is a synchronization primitive used to manage access to a shared resource in concurrent programming.
+
+Purpose: It prevents race conditions by ensuring that only one thread or process can access a resource at a time.
+
+Locking Mechanism:
+
+Lock: A thread locks the mutex before accessing the shared resource.
+Unlock: The thread unlocks the mutex after finishing the operation.
+Blocking: If a thread attempts to lock a mutex that is already locked, it may be blocked until the mutex becomes available.
+
+Ownership: Mutexes are typically owned by the thread that locks them, preventing other threads from unlocking it.
+
+Deadlocks: Care must be taken to avoid deadlocks, where two or more threads wait indefinitely for resources held by each other.
+
+Types: There are different types of mutexes, such as:
+
+Binary Mutex: Only two states (locked/unlocked).
+Recursive Mutex: Allows the same thread to lock it multiple times.
+Performance: While mutexes ensure safety, they can introduce overhead and reduce performance due to locking and unlocking operations.
+
+Use Cases: Commonly used in multi-threaded applications, such as databases, operating systems, and web servers.
+
+Libraries: Many programming languages and frameworks provide built-in support for mutexes, such as pthreads in C, std::mutex in C++, and threading modules in Python.
+
+This should give you a clear understanding of what mutexes are and their role in concurrent programming!
+
+
+
+
+
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+
+#define NUM_THREADS 5
+#define INCREMENTS 100000
+
+// Shared resource
+int counter = 0;
+
+// Mutex for synchronizing access to the counter
+pthread_mutex_t mutex;
+
+void* increment(void* arg) {
+    for (int i = 0; i < INCREMENTS; i++) {
+        // Lock the mutex before accessing the shared resource
+        pthread_mutex_lock(&mutex);
+        
+        // Critical section: increment the counter
+        counter++;
+        
+        // Unlock the mutex after the critical section
+        pthread_mutex_unlock(&mutex);
+    }
+    return NULL;
+}
+
+int main() {
+    pthread_t threads[NUM_THREADS];
+    pthread_mutex_init(&mutex, NULL);  // Initialize the mutex
+
+    // Create threads
+    for (int i = 0; i < NUM_THREADS; i++) {
+        pthread_create(&threads[i], NULL, increment, NULL);
+    }
+
+    // Wait for all threads to finish
+    for (int i = 0; i < NUM_THREADS; i++) {
+        pthread_join(threads[i], NULL);
+    }
+
+    // Destroy the mutex
+    pthread_mutex_destroy(&mutex);
+
+    // Print the final value of the counter
+    printf("Final counter value: %d\n", counter);
+    return 0;
+}
+Explanation
+Includes: The code includes necessary headers for pthreads and standard I/O.
+
+Shared Resource: An integer counter is declared to be incremented by multiple threads.
+
+Mutex Declaration: A mutex mutex is declared to control access to counter.
+
+Thread Function:
+
+The increment function is defined, which increments the counter a specified number of times.
+It locks the mutex before modifying the counter and unlocks it afterward, ensuring only one thread can modify counter at a time.
+Main Function:
+
+The mutex is initialized with pthread_mutex_init.
+Multiple threads are created, each executing the increment function.
+The main thread waits for all child threads to finish using pthread_join.
+Finally, the mutex is destroyed with pthread_mutex_destroy, and the final value of counter is printed.
