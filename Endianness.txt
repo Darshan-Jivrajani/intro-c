@@ -1,0 +1,42 @@
+Endianness refers to the order in which bytes are arranged within larger data types (like integers) when stored in memory. There are two primary types of endianness:
+
+Little Endian: The least significant byte (LSB) is stored at the lowest memory address. For example, the 32-bit integer 0x12345678 would be stored in memory as:
+
+css
+Copy code
+Address    Value
+0x00       0x78
+0x01       0x56
+0x02       0x34
+0x03       0x12
+Big Endian: The most significant byte (MSB) is stored at the lowest memory address. The same integer 0x12345678 would be stored as:
+
+css
+Copy code
+Address    Value
+0x00       0x12
+0x01       0x34
+0x02       0x56
+0x03       0x78
+In C, you can determine the endianness of your system by checking the byte order of a multi-byte data type. Here’s a simple way to do that:
+
+c
+Copy code
+#include <stdio.h>
+
+int main() {
+    unsigned int x = 1; // 0x00000001
+    char *c = (char*)&x;
+
+    if (*c) {
+        printf("Little Endian\n");
+    } else {
+        printf("Big Endian\n");
+    }
+
+    return 0;
+}
+This code checks the first byte of the integer x. If it’s 1, the system is little-endian; if it’s 0, the system is big-endian.
+
+
+
